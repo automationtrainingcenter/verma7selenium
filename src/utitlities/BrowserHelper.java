@@ -6,14 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class BrowserHelper {
+public class BrowserHelper extends GenericHelper{
 	
 	protected static WebDriver driver;
 	
-	// return absolute path of the given file in a folder
-	public static String getFilePath(String folderName, String fileName) {
-		return System.getProperty("user.dir")+File.separator+folderName+File.separator+fileName;
-	}
+	
 	
 	
 	// launch browser method
