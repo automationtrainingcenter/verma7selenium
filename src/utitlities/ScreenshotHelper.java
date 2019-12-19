@@ -14,6 +14,7 @@ import java.util.Date;
 
 import javax.imageio.ImageIO;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -56,6 +57,18 @@ public class ScreenshotHelper extends GenericHelper {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+
+	// capture multiple screenshots of the entire web page
+	public static void takeMultipleScreenshots(WebDriver driver, String folderName, String fileName) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		long sh = (long)js.executeScript("return document.documentElement.scrollHeight");
+		long ch = (long)js.executeScript("return document.documentElement.clientHeight");
+		while(sh >= 0) {
+			takeScreenshot(driver, folderName, fileName);
+			js.executeScript("document.documentElement.scrollBy(0, arguments[0])", ch);
+			sh -= ch;
 		}
 	}
 
