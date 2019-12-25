@@ -31,7 +31,7 @@ public class ScreenshotHelper extends GenericHelper {
 
 	// capture a screenshot
 	// provide file name only, no need of extension
-	public static void takeScreenshot(WebDriver driver, String folderName, String fileName) {
+	public static String takeScreenshot(WebDriver driver, String folderName, String fileName) {
 		// convert webdriver reference to the TakesScreenshot reference
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File srcImg = ts.getScreenshotAs(OutputType.FILE);
@@ -41,6 +41,8 @@ public class ScreenshotHelper extends GenericHelper {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
+		System.out.println(destImg.getAbsolutePath());
+		return destImg.getAbsolutePath();
 	}
 
 	// capture alert screenshot
